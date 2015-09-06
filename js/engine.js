@@ -148,7 +148,7 @@ var Engine = (function(global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
-        var enemyCount = 0
+        var enemyCount = 0;
         allEnemies.forEach(function(enemy) {
             enemy.render();
             enemyCount += 1;

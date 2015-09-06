@@ -1,17 +1,15 @@
 
 // Enemies our player must avoid
-var Enemy = function(enemyPng,enemyPossibleY,speed, count) {
+var Enemy = function(enemyPng,enemyPossibleY,speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.xRange = [-150, 600];
     this.possibleY = enemyPossibleY;
-    this.speedRange = speed; //[150, 600];
+    this.speedRange = speed;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
 
     this.sprite = enemyPng;
-    this.enemyCount = count + 1
-    console.log (this.enemyCount);
     this.reset();
 }
 
@@ -31,7 +29,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     var maxPos = this.xRange[1];
-    this.x +=this.speed * dt;
+    this.x += this.speed * dt;
 
     //var playerY = Player.yPostion();
     //console.log ("enemy", playerY);
@@ -72,11 +70,6 @@ Player.prototype.update = function() {
     this.checkCollisions();
 }
 
-Player.prototype.yPosition = function() {
-    var playerY = this.y;
-    console.log (playerY);
-    return this.y;
-}
 
 Player.prototype.checkCollisions = function() {
     if (this.y == -20) {
@@ -93,7 +86,7 @@ Player.prototype.checkCollisions = function() {
                 // is the bug on the player?
                 if (enemy.x >= player.x - 30 && enemy.x <= player.x + 30) {
                     var enemyPossibleY = [60, 140];
-                    var enemySpeedrange = [150, 700];
+                    var enemySpeedrange = [150, 500];
                     var bug7 = new Enemy('images/zombie-cat-girl.png', enemyPossibleY, enemySpeedrange);
                     enemySpeedrange = [50, 600];
                     enemyPossibleY = [60, 140, 220, 300];
@@ -132,20 +125,17 @@ Player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-//Variable zombie used to document the player has been bitten by
-//The zombie bugs!
-
-//var zombie=0;
+var bug,
+    enemies;
+var allEnemies = [];
 var enemyPossibleY = [60, 140 ,220, 300];
 var enemySpeedrange = [150, 600];
-var bug1 = new Enemy('images/enemy-bug.png', enemyPossibleY, enemySpeedrange,1);
-var bug2 = new Enemy('images/enemy-bug.png', enemyPossibleY, enemySpeedrange,1);
-var bug3 = new Enemy('images/enemy-bug.png', enemyPossibleY, enemySpeedrange,1);
-var bug4 = new Enemy('images/enemy-bug.png', enemyPossibleY, enemySpeedrange,1);
-var bug5 = new Enemy('images/enemy-bug.png', enemyPossibleY, enemySpeedrange,1);
-var bug6 = new Enemy('images/enemy-bug.png', enemyPossibleY, enemySpeedrange,2);
-var allEnemies = [bug1, bug2, bug3, bug4, bug5, bug6];
 
+for (i = 0; i < 6; i++) {
+    bug = new Enemy('images/enemy-bug.png', enemyPossibleY, enemySpeedrange);
+    enemies = allEnemies.push(bug);
+}
+//allEnemies = [bug];
 var player = new Player();
 
 // This listens for key presses and sends the keys to your
